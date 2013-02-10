@@ -18,3 +18,33 @@ exports.list = (req, res) ->
 		return
 		)
 	return
+
+exports.listUser = (req, res) ->
+	id = parseInt(req.params.id)
+	MongoClient.connect(dbURL, (err, db) ->
+		return console.dir(err) if err
+		usersCollection = db.collection('users')
+		user = usersCollection.findOne({_id: id}, (err, item) ->
+			return console.dir(err) if err
+			if item
+				res.send(item)
+				return
+			else
+				highestId = -1
+				highestUser = usersCollection.find().sort({_id: -1}).limit(1).toArray((err, results) ->
+					return console.dir(err) if err
+					highestId = results[0]._id + 1
+					newUser =
+						_id: highestId
+						location: -1
+					usersCollection.insert(newUser, (err, results) ->
+						return console.dir(err) if err
+						res.send(results)
+						return
+						)
+					return
+					)
+				return
+			)
+		return
+		)

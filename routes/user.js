@@ -21,4 +21,48 @@
     });
   };
 
+  exports.listUser = function(req, res) {
+    var id;
+    id = parseInt(req.params.id);
+    return MongoClient.connect(dbURL, function(err, db) {
+      var user, usersCollection;
+      if (err) {
+        return console.dir(err);
+      }
+      usersCollection = db.collection('users');
+      user = usersCollection.findOne({
+        _id: id
+      }, function(err, item) {
+        var highestId, highestUser;
+        if (err) {
+          return console.dir(err);
+        }
+        if (item) {
+          res.send(item);
+        } else {
+          highestId = -1;
+          highestUser = usersCollection.find().sort({
+            _id: -1
+          }).limit(1).toArray(function(err, results) {
+            var newUser;
+            if (err) {
+              return console.dir(err);
+            }
+            highestId = results[0]._id + 1;
+            newUser = {
+              _id: highestId,
+              location: -1
+            };
+            usersCollection.insert(newUser, function(err, results) {
+              if (err) {
+                return console.dir(err);
+              }
+              res.send(results);
+            });
+          });
+        }
+      });
+    });
+  };
+
 }).call(this);
