@@ -13,6 +13,14 @@ module.exports = function(grunt){
       compileMongo: {
         files: [ 'coffee/mongo.coffee'],
         dest: 'js/mongo.js'
+      },
+      compileUser: {
+        files: ['coffee/routes/user.coffee'],
+        dest: 'routes/user.js'
+      },
+      compileArticle: {
+        files: ['coffee/routes/article.coffee'],
+        dest: 'routes/article.js'
       }
     },
     watch: {
@@ -23,6 +31,14 @@ module.exports = function(grunt){
       mongo: {
         files: 'coffee/mongo.coffee',
         tasks: 'coffee:compileMongo ok'
+      },
+      user: {
+        files: 'coffee/routes/user.coffee',
+        tasks: 'coffee:compileUser ok'
+      },
+      article: {
+        files: 'coffee/routes/article.coffee',
+        tasks: 'coffee:compileArticle ok'
       }
     }
   });
