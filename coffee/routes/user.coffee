@@ -49,6 +49,18 @@ exports.listUser = (req, res) ->
 		return
 		)
 
+exports.userClosedApp = (req, res) ->
+	userId = parseInt(req.params.id)
+	MongoClient.connect(dbURL, (err, db) ->
+		return console.dir(err) if err
+		usersCollection = db.collection('users')
+		usersCollection.update({_id: userId}, {location: -1}, (err, results) ->
+			res.send(results)
+			return
+			)
+		return
+		)
+
 exports.usersInArticle = (req, res) ->
 	articleId = parseInt(req.params.articleId)
 	MongoClient.connect(dbURL, (err, db) ->

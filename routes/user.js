@@ -65,6 +65,25 @@
     });
   };
 
+  exports.userClosedApp = function(req, res) {
+    var userId;
+    userId = parseInt(req.params.id);
+    return MongoClient.connect(dbURL, function(err, db) {
+      var usersCollection;
+      if (err) {
+        return console.dir(err);
+      }
+      usersCollection = db.collection('users');
+      usersCollection.update({
+        _id: userId
+      }, {
+        location: -1
+      }, function(err, results) {
+        res.send(results);
+      });
+    });
+  };
+
   exports.usersInArticle = function(req, res) {
     var articleId;
     articleId = parseInt(req.params.articleId);

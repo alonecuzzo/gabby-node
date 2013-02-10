@@ -31,6 +31,7 @@ app.configure('development', function(){
 app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/users/:id?', user.listUser);
+app.get('/user-closed-app/:id?', user.userClosedApp)
 app.get('/articles', article.list);
 app.get('/articles/:articleId/:userId?', article.listArticle);
 app.get('/users-in-article/:articleId?', user.usersInArticle);
