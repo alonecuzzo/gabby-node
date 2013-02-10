@@ -5,7 +5,8 @@ This is the nodejs backend for our super app gabby which allows for realtime cha
 
 ##API Endpoints
 
-**/users**: returns json object of all of the users in the db
+##/users## 
+returns json object of all of the users in the db
 
 ```json
 [
@@ -21,7 +22,8 @@ This is the nodejs backend for our super app gabby which allows for realtime cha
 ]
 ```
 
-**/users/id**: returns single user object, creates new user object if the current user id doesn't exist
+##/users/id## 
+returns single user object, creates new user object if the current user id doesn't exist
 
 ```json
 {
@@ -30,9 +32,11 @@ This is the nodejs backend for our super app gabby which allows for realtime cha
 }
 ```
 
-**/user-closed-app/id**: returns nothing, sets the user's location to -1 when the user closes the app
+##/user-closed-app/id## 
+returns nothing, sets the user's location to -1 when the user closes the app
 
-**/articles**: returns list of articles that we're keeping track of/ watching
+##/articles## 
+returns list of articles that we're keeping track of/ watching
 
 ```json
 [
@@ -48,7 +52,8 @@ This is the nodejs backend for our super app gabby which allows for realtime cha
 ]
 ```
 
-**/articles/articleId/userId**: sets the user's location to the specified article id, returns the article created
+##/articles/articleId/userId## 
+sets the user's location to the specified article id, returns the article created
 
 ```json
 {
@@ -57,7 +62,7 @@ This is the nodejs backend for our super app gabby which allows for realtime cha
 }
 ```
 
-##/users-in-article/articleId:##
+##/users-in-article/articleId##
 returns list of users that have the location that matches the articleId, so it returns all users currently viewing the specified articleId
 
 ```json
