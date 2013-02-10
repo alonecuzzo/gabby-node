@@ -57,7 +57,8 @@ This is the nodejs backend for our super app gabby which allows for realtime cha
 }
 ```
 
-##/users-in-article/articleId##: returns list of users that have the location that matches the articleId, so it returns all users currently viewing the specified articleId
+##/users-in-article/articleId:##
+returns list of users that have the location that matches the articleId, so it returns all users currently viewing the specified articleId
 
 ```json
 [
