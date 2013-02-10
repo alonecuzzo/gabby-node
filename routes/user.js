@@ -65,4 +65,21 @@
     });
   };
 
+  exports.usersInArticle = function(req, res) {
+    var articleId;
+    articleId = parseInt(req.params.articleId);
+    return MongoClient.connect(dbURL, function(err, db) {
+      var usersCollection;
+      if (err) {
+        return console.dir(err);
+      }
+      usersCollection = db.collection('users');
+      usersCollection.find({
+        location: articleId
+      }).toArray(function(err, results) {
+        res.send(results);
+      });
+    });
+  };
+
 }).call(this);

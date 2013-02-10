@@ -10,7 +10,7 @@ exports.list = (req, res) ->
 	MongoClient.connect(dbURL, (err, db) ->
 		return console.dir(err) if err
 		articlesCollection = db.collection('articles')
-		responseJSON = usersCollection.find().toArray((err, results) ->
+		responseJSON = articlesCollection.find().toArray((err, results) ->
 			res.send(results)
 			return
 			)

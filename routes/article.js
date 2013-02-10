@@ -15,7 +15,7 @@
         return console.dir(err);
       }
       articlesCollection = db.collection('articles');
-      responseJSON = usersCollection.find().toArray(function(err, results) {
+      responseJSON = articlesCollection.find().toArray(function(err, results) {
         res.send(results);
       });
     });

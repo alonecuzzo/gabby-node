@@ -48,3 +48,15 @@ exports.listUser = (req, res) ->
 			)
 		return
 		)
+
+exports.usersInArticle = (req, res) ->
+	articleId = parseInt(req.params.articleId)
+	MongoClient.connect(dbURL, (err, db) ->
+		return console.dir(err) if err
+		usersCollection = db.collection('users')
+		usersCollection.find({location: articleId}).toArray((err, results) ->
+			res.send(results)
+			return
+			)
+		return
+		)
