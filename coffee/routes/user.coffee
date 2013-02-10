@@ -39,7 +39,7 @@ exports.listUser = (req, res) ->
 						location: -1
 					usersCollection.insert(newUser, (err, results) ->
 						return console.dir(err) if err
-						res.send(JSON.stringify(results))
+						res.send(JSON.stringify(results[0]))
 						return
 						)
 					return

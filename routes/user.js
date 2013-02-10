@@ -57,7 +57,7 @@
               if (err) {
                 return console.dir(err);
               }
-              res.send(JSON.stringify(results));
+              res.send(JSON.stringify(results[0]));
             });
           });
         }
