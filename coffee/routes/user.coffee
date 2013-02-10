@@ -11,7 +11,7 @@ exports.list = (req, res) ->
 		return console.dir(err) if err
 		usersCollection = db.collection('users')
 		responseJSON = usersCollection.find().toArray((err, results) ->
-			res.send(results)
+			res.send(JSON.stringify(results))
 			return
 			)
 		# res.send(JSON.stringify(responseJSON))
@@ -27,7 +27,7 @@ exports.listUser = (req, res) ->
 		user = usersCollection.findOne({_id: id}, (err, item) ->
 			return console.dir(err) if err
 			if item
-				res.send(item)
+				res.send(JSON.stringify(item))
 				return
 			else
 				highestId = -1
@@ -39,7 +39,7 @@ exports.listUser = (req, res) ->
 						location: -1
 					usersCollection.insert(newUser, (err, results) ->
 						return console.dir(err) if err
-						res.send(results)
+						res.send(JSON.stringify(results))
 						return
 						)
 					return
@@ -55,7 +55,7 @@ exports.userClosedApp = (req, res) ->
 		return console.dir(err) if err
 		usersCollection = db.collection('users')
 		usersCollection.update({_id: userId}, {location: -1}, (err, results) ->
-			res.send(results)
+			res.send(JSON.stringify(results))
 			return
 			)
 		return
@@ -67,7 +67,7 @@ exports.usersInArticle = (req, res) ->
 		return console.dir(err) if err
 		usersCollection = db.collection('users')
 		usersCollection.find({location: articleId}).toArray((err, results) ->
-			res.send(results)
+			res.send(JSON.stringify(results))
 			return
 			)
 		return

@@ -11,7 +11,7 @@ exports.list = (req, res) ->
 		return console.dir(err) if err
 		articlesCollection = db.collection('articles')
 		responseJSON = articlesCollection.find().toArray((err, results) ->
-			res.send(results)
+			res.send(JSON.stringify(results))
 			return
 			)
 		# res.send(JSON.stringify(responseJSON))
@@ -30,7 +30,7 @@ exports.listArticle = (req, res) ->
 			if item
 				usersCollection = db.collection('users')
 				usersCollection.update({_id: userId}, {location: articleId}, (err, item) ->)
-				res.send(item)
+				res.send(JSON.stringify(item))
 				return
 			else
 				newArticle = 
@@ -40,7 +40,7 @@ exports.listArticle = (req, res) ->
 					return console.dir(err) if err
 					usersCollection = db.collection('users')
 					usersCollection.update({_id: userId}, {location: articleId}, (err, item) ->)
-					res.send(item)
+					res.send(JSON.stringify(item))
 					return
 					)
 				return

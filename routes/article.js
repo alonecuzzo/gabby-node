@@ -16,7 +16,7 @@
       }
       articlesCollection = db.collection('articles');
       responseJSON = articlesCollection.find().toArray(function(err, results) {
-        res.send(results);
+        res.send(JSON.stringify(results));
       });
     });
   };
@@ -45,7 +45,7 @@
           }, {
             location: articleId
           }, function(err, item) {});
-          res.send(item);
+          res.send(JSON.stringify(item));
         } else {
           newArticle = {
             _id: articleId,
@@ -61,7 +61,7 @@
             }, {
               location: articleId
             }, function(err, item) {});
-            res.send(item);
+            res.send(JSON.stringify(item));
           });
         }
       });

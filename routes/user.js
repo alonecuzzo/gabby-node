@@ -16,7 +16,7 @@
       }
       usersCollection = db.collection('users');
       responseJSON = usersCollection.find().toArray(function(err, results) {
-        res.send(results);
+        res.send(JSON.stringify(results));
       });
     });
   };
@@ -38,7 +38,7 @@
           return console.dir(err);
         }
         if (item) {
-          res.send(item);
+          res.send(JSON.stringify(item));
         } else {
           highestId = -1;
           highestUser = usersCollection.find().sort({
@@ -57,7 +57,7 @@
               if (err) {
                 return console.dir(err);
               }
-              res.send(results);
+              res.send(JSON.stringify(results));
             });
           });
         }
@@ -79,7 +79,7 @@
       }, {
         location: -1
       }, function(err, results) {
-        res.send(results);
+        res.send(JSON.stringify(results));
       });
     });
   };
@@ -96,7 +96,7 @@
       usersCollection.find({
         location: articleId
       }).toArray(function(err, results) {
-        res.send(results);
+        res.send(JSON.stringify(results));
       });
     });
   };
